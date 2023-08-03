@@ -1,5 +1,7 @@
 choices = ['paper', 'rock', 'scissors'] // zdefinowanie tablicy
 
+
+
 function computerChoice(){
   return choices[Math.floor(Math.random()* choices.length)] // funkcja ktora zwraca tablice oraz metoda math.random ktora losuje z tablcy wartosc
   }
@@ -18,6 +20,8 @@ function computerChoice(){
     return ("Its a tie");
   }else {
       return "You Win! " + playerSelection + " beats " + computerSelection;
+
+
   }
   }
 
@@ -27,12 +31,15 @@ function game() { // glowna funkcja gry
 
   let playerScore = 0;
   let computerScore = 0;
- 
-  for(let i  = 0; i < 5; i++) { // petla for ktora pobiera od uzytkownika wartosc 
-    let sign = prompt("Write your choice (paper/rock/scissors)").toLocaleLowerCase(); // zdefinowanie zmiennej i wywolanie metody prompt
-    let computerSelection = computerChoice();// zmienna przypisana do zmiennej computerChoice, ktora zwraca wartosci z tablicy
-    let result = playRound(sign, computerSelection); // zmienna result przypisana do funkcji playRound z parametrami sign i computerSelection
-    console.log(result);
+  let computerSelection = computerChoice();// zmienna przypisana do zmiennej computerChoice, ktora zwraca wartosci z tablicy
+  let result = playRound(computerSelection); // zmienna result przypisana do funkcji playRound z parametrami sign i computerSelection
+  
+  
+  
+  const myButton = document.getElementById("button");
+  myButton.addEventListener("click", playRound)
+
+
 
 
     if (result.startsWith("You Win")){ // metoda startsWith zwraca true, jesli ciag zaczyna sie od okreslonego ciagu zwraca true lub false
@@ -42,21 +49,27 @@ function game() { // glowna funkcja gry
     }
     
     
-}
 
-console.log("Final Score:");
-console.log("Player: " + playerScore);
-console.log("Computer: " + computerScore);
 
-if (playerScore > computerScore) { // warunek dotyczacy okreslenia wygranego
-  console.log("You won the game!");
-}else if (playerScore < computerScore) {
-  console.log("You Lose");
-}else {
-  console.log("It's Tie");
- }
-}
+  console.log("Final Score:");
+  console.log("Player: " + playerScore);
+  console.log("Computer: " + computerScore);
 
+  if (playerScore > computerScore) { // warunek dotyczacy okreslenia wygranego
+    console.log("You won the game!");
+  }else if (playerScore < computerScore) {
+    console.log("You Lose");
+  }else {
+    console.log("It's Tie");
+  }
+
+  
+
+
+  }
+
+  
 
 game();
+
  
