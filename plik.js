@@ -1,5 +1,6 @@
 choices = ['paper', 'rock', 'scissors'] // zdefinowanie tablicy
-
+let playerScore = 0;
+let computerScore = 0;
 
 
 function computerChoice(){
@@ -20,55 +21,62 @@ function computerChoice(){
     return ("Its a tie");
   }else {
       return "You Win! " + playerSelection + " beats " + computerSelection;
-
+ }
 
   }
-  }
 
 
 
-function game() { // glowna funkcja gry
+function game(playerSelection) { // glowna funkcja gry
 
-  let playerScore = 0;
-  let computerScore = 0;
+  
   let computerSelection = computerChoice();// zmienna przypisana do zmiennej computerChoice, ktora zwraca wartosci z tablicy
-  let result = playRound(computerSelection); // zmienna result przypisana do funkcji playRound z parametrami sign i computerSelection
+  let result = playRound(playerSelection,computerSelection); // zmienna result przypisana do funkcji playRound z parametrami sign i computerSelection
   
   
-  
-  const myButton = document.getElementById("button");
-  myButton.addEventListener("click", playRound)
 
+  if (result.startsWith("You Win")) {
+    playerScore++;
+  } else if (result.startsWith("You Lose!")) {
+    computerScore++;
+  }
+  if (playerScore === 5){
+    console.log("You won the game!");
+    resetGame();
+  }
 
-
-
-    if (result.startsWith("You Win")){ // metoda startsWith zwraca true, jesli ciag zaczyna sie od okreslonego ciagu zwraca true lub false
-      playerScore++;
-    }else if (result.startsWith("You Lose!")){
-      computerScore++;
-    }
-    
-    
 
 
   console.log("Final Score:");
   console.log("Player: " + playerScore);
   console.log("Computer: " + computerScore);
 
-  if (playerScore > computerScore) { // warunek dotyczacy okreslenia wygranego
-    console.log("You won the game!");
-  }else if (playerScore < computerScore) {
-    console.log("You Lose");
-  }else {
-    console.log("It's Tie");
-  }
-
   
-
-
-  }
-
   
+}
+
+
+      const myButton = document.getElementById("button");
+    myButton.addEventListener("click", function () {
+      game("rock");
+    });
+
+      const myButton2 = document.getElementById("button2");
+    myButton2.addEventListener("click", function () {
+      game("paper"); 
+    });
+
+    const myButton3 = document.getElementById("button3");
+    myButton3.addEventListener("click", function () {
+      game("scissors"); 
+    });
+
+function resetGame(){
+  playerScore = 0;
+  computer
+}  
+    
+
 
 game();
 
